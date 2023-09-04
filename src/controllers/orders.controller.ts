@@ -6,4 +6,10 @@ async function listAll(req: Request, res: Response): Promise<void> {
   res.status(200).json(orders);
 }
 
-export default { listAll };
+const createOrder = async (req: Request, res: Response) => {
+  const { userId, productIds } = req.body;
+  const order = await OrdersService.createOrder(userId, productIds);
+  res.status(201).json(order);
+};
+
+export default { listAll, createOrder };
